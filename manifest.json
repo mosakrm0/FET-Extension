@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "FET Portal Modernizer",
+  "version": "0.0.1",
+  "description": "يحول بوابة كلية الهندسة التكنولوجية إلى تصميم حديث وعصري",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://appsrv2.fet.edu.jo:7777/reg_new/*",
+        "http://appsrv1.fet.edu.jo:7777/reg_new/*",
+        "http://appserver.fet.edu.jo:7778/reg_new/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "modern-ui.js",
+        "icons/*"
+      ],
+      "matches": [
+        "http://appsrv2.fet.edu.jo:7777/*",
+        "http://appsrv1.fet.edu.jo:7777/*",
+        "http://appserver.fet.edu.jo:7778/*"
+      ]
+    }
+  ]
+}

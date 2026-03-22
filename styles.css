@@ -1,0 +1,2093 @@
+/* ============================================================
+   BAU Portal Modernizer — Design System
+   Colors: #007A3D (Green) · #D2B48C (Gold) · #000 · #FFF
+   Style: Glassmorphism + Modern Arabic UI
+   ============================================================ */
+
+/* --- Google Fonts (injected by content.js) --- */
+
+/* ============================================================
+   1. CSS Custom Properties
+   ============================================================ */
+:root,
+[data-theme="light"] {
+  --primary: #007A3D;
+  --primary-light: #00A854;
+  --primary-dark: #005C2E;
+  --primary-glow: rgba(0, 122, 61, 0.35);
+  --accent: #D2B48C;
+  --accent-light: #E0C9A6;
+  --accent-glow: rgba(210, 180, 140, 0.35);
+  --value-color: #1B5E20;
+
+  --bg: #F0F2F5;
+  --bg-gradient: linear-gradient(135deg, #F0F2F5 0%, #E8EDE5 50%, #F0F2F5 100%);
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-solid: #FFFFFF;
+  --surface-hover: rgba(255, 255, 255, 0.9);
+  --surface-alt: rgba(0, 122, 61, 0.06);
+
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-border-hover: rgba(0, 122, 61, 0.25);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --glass-shadow-hover: 0 12px 40px rgba(0, 122, 61, 0.12);
+
+  --text: #000000;
+  --text-secondary: #3A3A3A;
+  --text-muted: #777777;
+  --text-inverse: #FFFFFF;
+
+  --border: rgba(0, 0, 0, 0.1);
+  --border-strong: rgba(0, 0, 0, 0.18);
+
+  --sidebar-bg: rgba(255, 255, 255, 0.75);
+  --sidebar-width: 270px;
+  --header-height: 70px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-family: 'Tajawal', 'Segoe UI', Tahoma, Arial, sans-serif;
+
+  --table-header-bg: rgba(0, 122, 61, 0.08);
+  --table-row-hover: rgba(0, 122, 61, 0.05);
+  --table-alt-row: rgba(0, 0, 0, 0.02);
+
+  --input-bg: #FFFFFF;
+  --input-border: rgba(0, 0, 0, 0.15);
+  --input-focus-border: var(--primary);
+  --input-focus-shadow: 0 0 0 3px var(--primary-glow);
+
+  --scrollbar-track: rgba(0, 0, 0, 0.05);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] {
+  --primary: #00C964;
+  --primary-light: #00E676;
+  --primary-dark: #007A3D;
+  --primary-glow: rgba(0, 201, 100, 0.3);
+  --accent: #D2B48C;
+  --accent-light: #E0C9A6;
+  --accent-glow: rgba(210, 180, 140, 0.2);
+  --value-color: #81C784;
+
+  --bg: #000000;
+  --bg-gradient: linear-gradient(135deg, #000000 0%, #071A07 50%, #000000 100%);
+  --surface: rgba(30, 30, 30, 0.75);
+  --surface-solid: #1A1A1A;
+  --surface-hover: rgba(40, 40, 40, 0.9);
+  --surface-alt: rgba(0, 201, 100, 0.08);
+
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(0, 201, 100, 0.35);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --glass-shadow-hover: 0 12px 40px rgba(0, 201, 100, 0.2);
+
+  --text: #FFFFFF;
+  --text-secondary: #BBBBBB;
+  --text-muted: #777777;
+  --text-inverse: #000000;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  --sidebar-bg: rgba(15, 15, 15, 0.85);
+
+  --table-header-bg: rgba(0, 201, 100, 0.12);
+  --table-row-hover: rgba(0, 201, 100, 0.08);
+  --table-alt-row: rgba(255, 255, 255, 0.03);
+
+  --input-bg: rgba(25, 25, 25, 0.9);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-focus-border: var(--primary);
+  --input-focus-shadow: 0 0 0 3px var(--primary-glow);
+
+  --scrollbar-track: rgba(255, 255, 255, 0.03);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   2. Reset & Base
+   ============================================================ */
+body.bau-modern {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-family) !important;
+  background: var(--bg-gradient) !important;
+  background-attachment: fixed !important;
+  color: var(--text) !important;
+  direction: rtl !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6 !important;
+  font-size: 15px !important;
+  transition: background var(--transition-slow), color var(--transition-normal);
+}
+
+body.bau-modern *,
+body.bau-modern *::before,
+body.bau-modern *::after {
+  box-sizing: border-box;
+}
+
+body.bau-modern ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.bau-modern ::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+body.bau-modern ::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+body.bau-modern ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ============================================================
+   3. App Layout
+   ============================================================ */
+.bau-app {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- Sidebar --- */
+.bau-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-left: 1px solid var(--glass-border);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform var(--transition-normal), background var(--transition-normal);
+}
+
+.bau-sidebar-header {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.bau-sidebar-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+
+.bau-sidebar-logo svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.bau-sidebar-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.bau-sidebar-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* --- Navigation --- */
+.bau-nav {
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.bau-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.bau-nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  border-radius: inherit;
+}
+
+.bau-nav-item:hover {
+  color: var(--text) !important;
+  background: var(--surface);
+  border-color: var(--glass-border);
+  transform: translateX(-2px);
+}
+
+.bau-nav-item.active {
+  color: var(--text-inverse) !important;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  border-color: transparent;
+  box-shadow: 0 4px 16px var(--primary-glow);
+  font-weight: 600;
+}
+
+.bau-nav-item.active .bau-nav-icon svg {
+  color: white;
+}
+
+.bau-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.bau-nav-icon svg {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bau-nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bau-nav-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 16px;
+}
+
+.bau-nav-item.logout-item {
+  color: #E53935 !important;
+  margin-top: auto;
+}
+
+.bau-nav-item.logout-item:hover {
+  background: rgba(229, 57, 53, 0.08);
+  color: #E53935 !important;
+}
+
+/* --- Main Area --- */
+.bau-main {
+  flex: 1;
+  margin-right: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Header --- */
+.bau-header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0 32px;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition-normal);
+}
+
+.bau-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bau-header-title .bau-greeting {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.bau-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- Theme Toggle --- */
+.bau-theme-toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: var(--border-strong);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border: 1px solid var(--glass-border);
+}
+
+.bau-theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFB300, #FF8F00);
+  transition: transform var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(255, 179, 0, 0.4);
+}
+
+[data-theme="dark"] .bau-theme-toggle {
+  background: var(--primary-dark);
+}
+
+[data-theme="dark"] .bau-theme-toggle::after {
+  transform: translateX(-24px);
+  background: linear-gradient(135deg, #90CAF9, #42A5F5);
+  box-shadow: 0 2px 8px rgba(66, 165, 245, 0.4);
+}
+
+.bau-theme-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Menu toggle (mobile) */
+.bau-menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: all var(--transition-fast);
+}
+
+.bau-menu-toggle svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.bau-menu-toggle:hover {
+  background: var(--surface-hover);
+}
+
+/* ============================================================
+   4. Workspace / Content Area
+   ============================================================ */
+.bau-workspace {
+  flex: 1;
+  padding: 28px 32px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.bau-content-animate {
+  animation: bauFadeInUp 0.4s var(--transition-normal) both;
+}
+
+@keyframes bauFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   5. Cards (Glassmorphism) — overrides .info class
+   ============================================================ */
+.bau-card,
+body.bau-modern .info {
+  background: var(--surface) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--glass-shadow);
+  margin-bottom: 20px !important;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  animation: bauCardIn 0.5s ease both;
+}
+
+.bau-card:hover,
+body.bau-modern .info:hover {
+  border-color: var(--glass-border-hover) !important;
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-2px);
+}
+
+@keyframes bauCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.bau-card-header,
+body.bau-modern .info>h2:first-child {
+  padding: 18px 24px !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  font-family: var(--font-family) !important;
+  letter-spacing: 0.3px;
+  border-bottom: none !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bau-card-header h2,
+body.bau-modern .info>h2:first-child {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: white !important;
+  background: none !important;
+  border: none !important;
+}
+
+/* If the .info div sets h2 as direct child, style it as header */
+body.bau-modern .info>h2 {
+  padding: 18px 24px !important;
+  margin: 0 !important;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  font-family: var(--font-family) !important;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.bau-card-body {
+  padding: 24px;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Content inside .info after the h2 */
+body.bau-modern .info>*:not(h2) {
+  padding-left: 24px;
+  padding-right: 24px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+body.bau-modern .info>table {
+  padding: 16px 24px;
+}
+
+body.bau-modern .info>p {
+  padding: 16px 24px 24px;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* ============================================================
+   6. Tables
+   ============================================================ */
+body.bau-modern table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  width: 100% !important;
+  font-family: var(--font-family) !important;
+  font-size: 14px !important;
+}
+
+body.bau-modern table[border="1"],
+body.bau-modern table[border="1"] td,
+body.bau-modern table[border="1"] th {
+  border: none !important;
+}
+
+body.bau-modern table[border="1"] {
+  background: var(--surface) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  width: 100% !important;
+}
+
+body.bau-modern table[border="1"] tr:first-child td,
+body.bau-modern table[border="1"] td[bgcolor] {
+  background: var(--table-header-bg) !important;
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 14px 16px !important;
+  text-align: center !important;
+  border-bottom: 2px solid var(--primary) !important;
+  white-space: nowrap;
+}
+
+body.bau-modern table[border="1"] tr:not(:first-child) td {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  transition: background var(--transition-fast);
+}
+
+body.bau-modern table[border="1"] tr:not(:first-child):nth-child(even) td {
+  background: var(--table-alt-row);
+}
+
+body.bau-modern table[border="1"] tr:not(:first-child):hover td {
+  background: var(--table-row-hover) !important;
+}
+
+/* Preserve status colors on hover (Issue 4) */
+body.bau-modern table[border="1"] tr:not(:first-child):hover td[style*="background: blue"],
+body.bau-modern table[border="1"] tr:not(:first-child):hover td[style*="background:blue"] {
+  background: linear-gradient(135deg, #1565C0, #42A5F5) !important;
+  color: white !important;
+}
+
+body.bau-modern table[border="1"] tr:not(:first-child):hover td[style*="background: red"],
+body.bau-modern table[border="1"] tr:not(:first-child):hover td[style*="background:red"] {
+  background: linear-gradient(135deg, #C62828, #EF5350) !important;
+  color: white !important;
+}
+
+body.bau-modern table[border="1"] tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Layout tables (no border) */
+body.bau-modern table:not([border="1"]) {
+  border: none !important;
+}
+
+body.bau-modern table:not([border="1"]) td {
+  padding: 8px 12px !important;
+  border: none !important;
+  vertical-align: middle !important;
+}
+
+/* Registration table — wrap in scrollable container */
+body.bau-modern .info,
+body.bau-modern .bau-card-body:has(> table[border="1"]),
+#workspace > div:has(> table[border="1"]) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Dark mode — ensure action buttons in tables are clearly visible */
+[data-theme="dark"] body.bau-modern table td input[type="button"],
+body.bau-modern[data-theme="dark"] table td input[type="button"],
+[data-theme="dark"] table td input[type="button"] {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+  background: rgba(0, 201, 100, 0.08) !important;
+}
+
+/* ============================================================
+   7. Typography Overrides
+   ============================================================ */
+body.bau-modern label.title,
+body.bau-modern .title {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  font-family: var(--font-family) !important;
+}
+
+body.bau-modern label.det,
+body.bau-modern .det {
+  color: var(--text) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  font-family: var(--font-family) !important;
+}
+
+body.bau-modern h2 {
+  font-family: var(--font-family) !important;
+  font-size: 16px !important;
+  color: var(--text) !important;
+  font-weight: 700;
+  margin: 0;
+}
+
+body.bau-modern a {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+body.bau-modern a:hover {
+  color: var(--primary-light) !important;
+  text-decoration: underline !important;
+}
+
+body.bau-modern p {
+  color: var(--text);
+  line-height: 1.8;
+}
+
+body.bau-modern center {
+  text-align: center;
+}
+
+/* ============================================================
+   8. Form Elements
+   ============================================================ */
+body.bau-modern input[type="text"],
+body.bau-modern input[type="password"],
+body.bau-modern input[type="email"],
+body.bau-modern input[type="number"],
+body.bau-modern input[type="file"],
+body.bau-modern textarea,
+body.bau-modern select {
+  background: var(--input-bg) !important;
+  border: 1.5px solid var(--input-border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 14px !important;
+  font-family: var(--font-family) !important;
+  font-size: 14px !important;
+  color: var(--text) !important;
+  outline: none !important;
+  transition: all var(--transition-fast) !important;
+  direction: rtl;
+  width: auto;
+}
+
+body.bau-modern input[type="text"]:focus,
+body.bau-modern input[type="password"]:focus,
+body.bau-modern input[type="email"]:focus,
+body.bau-modern input[type="number"]:focus,
+body.bau-modern textarea:focus,
+body.bau-modern select:focus {
+  border-color: var(--input-focus-border) !important;
+  box-shadow: var(--input-focus-shadow) !important;
+}
+
+body.bau-modern input::placeholder,
+body.bau-modern textarea::placeholder {
+  color: var(--text-muted) !important;
+  font-family: var(--font-family) !important;
+}
+
+body.bau-modern textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+body.bau-modern select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: left 12px center !important;
+  padding-left: 32px !important;
+}
+
+/* ============================================================
+   9. Buttons
+   ============================================================ */
+body.bau-modern input[type="button"],
+body.bau-modern button:not(.bau-theme-toggle):not(.bau-menu-toggle) {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 12px 24px !important;
+  font-family: var(--font-family) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  box-shadow: 0 4px 14px var(--primary-glow);
+  position: relative;
+  overflow: hidden;
+  width: auto !important;
+  height: auto !important;
+  min-height: 44px;
+  letter-spacing: 0.3px;
+}
+
+body.bau-modern input[type="button"]:hover,
+body.bau-modern button:not(.bau-theme-toggle):not(.bau-menu-toggle):hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px var(--primary-glow) !important;
+  filter: brightness(1.1);
+}
+
+body.bau-modern input[type="button"]:active,
+body.bau-modern button:not(.bau-theme-toggle):not(.bau-menu-toggle):active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px var(--primary-glow) !important;
+}
+
+/* ============================================================
+   10. Section Status Styles (override inline)
+   ============================================================ */
+body.bau-modern td[style*="background: blue"],
+body.bau-modern td[style*="background:blue"] {
+  background: linear-gradient(135deg, #1565C0, #42A5F5) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  padding: 4px 10px !important;
+}
+
+body.bau-modern td[style*="background: red"],
+body.bau-modern td[style*="background:red"] {
+  background: linear-gradient(135deg, #C62828, #EF5350) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  padding: 4px 10px !important;
+}
+
+/* ============================================================
+   11. Footer
+   ============================================================ */
+.bau-footer {
+  padding: 20px 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.bau-footer a {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+/* Hide original footer */
+body.bau-modern .footer {
+  display: none !important;
+}
+
+/* ============================================================
+   12. Prompt Workspace (overlay)
+   ============================================================ */
+body.bau-modern #prompt_workspace {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ============================================================
+   13. Inline Style Overrides
+   ============================================================ */
+body.bau-modern [style*="color:red"],
+body.bau-modern [style*="color: red"],
+body.bau-modern [style*="color:#FF0000"],
+body.bau-modern [style*="color:#ff0000"] {
+  color: var(--primary) !important;
+}
+
+body.bau-modern [style*="color: blue"],
+body.bau-modern [style*="color:blue"],
+body.bau-modern [style*="color:#0000FF"],
+body.bau-modern [style*="color:#0000ff"] {
+  color: var(--value-color) !important;
+}
+
+body.bau-modern h2[style*="color:red"],
+body.bau-modern h2[style*="color: red"],
+body.bau-modern h2[style*="color:#ff0000"],
+body.bau-modern h2[style*="color:#FF0000"] {
+  color: var(--primary) !important;
+  background: none !important;
+  font-size: 16px !important;
+  padding: 12px 0 !important;
+}
+
+body.bau-modern font[style*="color:black"],
+body.bau-modern [style*="color:black"],
+body.bau-modern [style*="color:#000000"] {
+  color: var(--text) !important;
+}
+
+body.bau-modern font[style*="color:blue"],
+body.bau-modern [style*="color:#0000FF"],
+body.bau-modern [style*="color:#0000ff"] {
+  color: var(--value-color) !important;
+}
+
+/* ============================================================
+   14. Animations
+   ============================================================ */
+.bau-card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.bau-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.bau-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.bau-card:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.bau-card:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+body.bau-modern .info:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+body.bau-modern .info:nth-of-type(2) {
+  animation-delay: 0.08s;
+}
+
+body.bau-modern .info:nth-of-type(3) {
+  animation-delay: 0.16s;
+}
+
+body.bau-modern .info:nth-of-type(4) {
+  animation-delay: 0.24s;
+}
+
+/* ============================================================
+   15. Sidebar overlay (mobile)
+   ============================================================ */
+.bau-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.bau-sidebar-overlay.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* ============================================================
+   16. Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .bau-sidebar {
+    transform: translateX(100%);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .bau-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .bau-main {
+    margin-right: 0;
+  }
+
+  .bau-menu-toggle {
+    display: flex;
+  }
+
+  .bau-workspace {
+    padding: 20px 16px;
+  }
+
+  .bau-header {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bau-sidebar {
+    width: 85vw;
+    max-width: 300px;
+  }
+
+  .bau-workspace {
+    padding: 16px 12px;
+  }
+
+  body.bau-modern table[border="1"] td {
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .bau-card-header,
+  body.bau-modern .info>h2 {
+    padding: 14px 16px !important;
+    font-size: 14px !important;
+  }
+
+  .bau-card-body {
+    padding: 16px;
+  }
+
+  body.bau-modern input[type="button"],
+  body.bau-modern button:not(.bau-theme-toggle):not(.bau-menu-toggle) {
+    padding: 10px 18px !important;
+    font-size: 13px !important;
+    min-height: 40px;
+  }
+}
+
+/* --- Error State Card --- */
+.bau-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.bau-error-state svg {
+  color: var(--primary);
+  opacity: 0.6;
+  animation: bauPulse 2s ease-in-out infinite;
+}
+
+.bau-error-state p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.7;
+}
+
+@keyframes bauPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* --- iPad breakpoint --- */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .bau-sidebar {
+    width: 240px;
+  }
+
+  .bau-sidebar-header {
+    padding: 20px 16px;
+  }
+
+  .bau-sidebar-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .bau-sidebar-logo svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .bau-sidebar-title {
+    font-size: 13px;
+  }
+
+  .bau-nav-item {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .bau-workspace {
+    padding: 20px;
+  }
+
+  .bau-header {
+    padding: 0 20px;
+    height: 60px;
+  }
+
+  .bau-info-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+/* --- Sidebar close button (mobile) --- */
+.bau-sidebar-close {
+  display: none;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  z-index: 10;
+  padding: 0 !important;
+  min-height: unset !important;
+}
+
+.bau-sidebar-close:hover {
+  background: var(--surface-hover) !important;
+  color: var(--text) !important;
+  transform: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.bau-sidebar-close svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+@media (max-width: 1024px) {
+  .bau-sidebar-close {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   17. Special Components
+   ============================================================ */
+/* Separator lines */
+body.bau-modern hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent) !important;
+  margin: 24px 0 !important;
+}
+
+/* Colored spans for status */
+body.bau-modern span#classification_ {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+/* Links that look like buttons */
+body.bau-modern a.label {
+  color: var(--primary) !important;
+  font-weight: 700;
+  font-size: 15px !important;
+}
+
+/* ============================================================
+   17. Modern UI Components (for modern-ui.js)
+   ============================================================ */
+
+/* --- Info Grid (student info, semester stats) --- */
+.bau-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.bau-info-grid.bau-info-compact {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.bau-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: all var(--transition-fast);
+}
+
+.bau-info-item:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-1px);
+}
+
+.bau-info-item.bau-info-full {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.bau-info-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.3px;
+}
+
+.bau-info-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.bau-info-value.bau-highlight {
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* --- Modern Tables --- */
+.bau-table-wrap {
+  overflow-x: auto;
+  margin: 16px 0 4px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.bau-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family);
+  font-size: 14px;
+}
+
+.bau-table thead th {
+  background: var(--table-header-bg);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 14px 16px;
+  text-align: right;
+  border-bottom: 2px solid var(--primary);
+  white-space: nowrap;
+}
+
+.bau-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.bau-table tbody td.center {
+  text-align: center;
+}
+
+.bau-table tbody tr:nth-child(even) td {
+  background: var(--table-alt-row);
+}
+
+.bau-table tbody tr:hover td {
+  background: var(--table-row-hover);
+}
+
+.bau-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Form Stack (vertical forms) --- */
+.bau-form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 8px 0;
+}
+
+.bau-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.bau-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bau-form-group.bau-form-full {
+  grid-column: 1 / -1;
+}
+
+.bau-form-group.bau-form-center {
+  align-items: center;
+  margin-top: 8px;
+}
+
+.bau-form-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* --- Form Section (bank info, etc.) --- */
+.bau-form-section {
+  margin-bottom: 8px;
+}
+
+.bau-form-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bau-form-section-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bau-form-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 540px) {
+  .bau-form-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bau-input,
+.bau-select,
+.bau-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: all var(--transition-fast);
+  direction: rtl;
+}
+
+.bau-input:focus,
+.bau-select:focus,
+.bau-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.bau-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.bau-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 12px center;
+  padding-left: 32px;
+}
+
+/* --- Buttons --- */
+.bau-btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 12px 32px !important;
+  font-family: var(--font-family) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  box-shadow: 0 4px 14px var(--primary-glow);
+  min-height: 46px;
+}
+
+.bau-btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px var(--primary-glow) !important;
+  filter: brightness(1.1);
+}
+
+.bau-btn-primary:active {
+  transform: translateY(0) !important;
+}
+
+.bau-btn-danger {
+  background: linear-gradient(135deg, #C62828, #EF5350) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 24px !important;
+  font-family: var(--font-family) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  box-shadow: 0 4px 14px rgba(198, 40, 40, 0.25);
+}
+
+.bau-btn-danger:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.1);
+}
+
+.bau-btn-outline {
+  background: transparent !important;
+  color: var(--text) !important;
+  border: 1.5px solid var(--border-strong) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 24px !important;
+  font-family: var(--font-family) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.bau-btn-outline:hover {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+  transform: translateY(-1px) !important;
+}
+
+.bau-btn-sm {
+  background: var(--surface-alt) !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+  border-radius: 6px !important;
+  padding: 6px 16px !important;
+  font-family: var(--font-family) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  margin-top: 4px;
+}
+
+.bau-btn-sm:hover {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+/* --- Action Bar (button groups) --- */
+.bau-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 0 4px;
+  justify-content: center;
+}
+
+/* --- Report Links --- */
+.bau-report-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+  transition: all var(--transition-fast);
+}
+
+.bau-report-link:hover {
+  border-color: var(--primary);
+  background: var(--table-row-hover);
+  transform: translateX(-4px);
+  color: var(--primary) !important;
+}
+
+.bau-report-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* --- Q&A Answer --- */
+.bau-answer {
+  font-size: 16px;
+  color: var(--value-color);
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+/* --- Announcement Text --- */
+.bau-announcement-text {
+  font-size: 15px;
+  line-height: 2;
+  color: var(--text);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* --- Error messages --- */
+.bau-error-msg {
+  color: #C62828;
+  font-weight: 600;
+  text-align: center;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+[data-theme="dark"] .bau-error-msg {
+  color: #EF5350;
+}
+
+/* --- Responsive for info grid --- */
+@media (max-width: 640px) {
+  .bau-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bau-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bau-action-bar {
+    flex-direction: column;
+  }
+
+  .bau-action-bar input {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   18. Print Styles
+   ============================================================ */
+@media print {
+
+  .bau-sidebar,
+  .bau-header,
+  .bau-footer,
+  .bau-theme-toggle,
+  .bau-menu-toggle {
+    display: none !important;
+  }
+
+  .bau-main {
+    margin: 0 !important;
+  }
+
+  .bau-card,
+  body.bau-modern .info {
+    break-inside: avoid;
+    backdrop-filter: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ============================================================
+   19. LOGIN PAGE
+   ============================================================ */
+.bau-login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+}
+
+/* Animated background shapes */
+.bau-login-bg-shapes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bau-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: bauFloat 20s infinite ease-in-out;
+}
+
+.bau-shape-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--primary);
+  top: -150px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.bau-shape-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--accent);
+  bottom: -100px;
+  left: -100px;
+  animation-delay: -7s;
+  animation-duration: 25s;
+}
+
+.bau-shape-3 {
+  width: 300px;
+  height: 300px;
+  background: var(--primary-light);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -14s;
+  animation-duration: 30s;
+}
+
+@keyframes bauFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+
+  75% {
+    transform: translate(40px, 30px) scale(1.02);
+  }
+}
+
+[data-theme="dark"] .bau-shape {
+  opacity: 0.15;
+}
+
+/* Login wrapper */
+.bau-login-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Login card */
+.bau-login-card {
+  width: 100%;
+  background: var(--surface);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  animation: bauCardIn 0.6s ease both;
+}
+
+.bau-login-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  padding: 32px 24px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bau-login-header::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.bau-login-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.bau-login-logo svg {
+  width: 34px;
+  height: 34px;
+  color: white;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bau-login-title {
+  color: white !important;
+  font-family: var(--font-family) !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  margin: 0 0 6px !important;
+  position: relative;
+}
+
+.bau-login-college {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-family: var(--font-family) !important;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  position: relative;
+}
+
+.bau-login-system {
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-family: var(--font-family) !important;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+/* Login form */
+.bau-login-form {
+  padding: 28px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bau-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bau-input-icon {
+  position: absolute;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bau-input-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: color var(--transition-fast);
+}
+
+.bau-input-group input {
+  width: 100% !important;
+  padding: 14px 50px 14px 14px !important;
+  background: var(--input-bg) !important;
+  border: 1.5px solid var(--input-border) !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-family) !important;
+  font-size: 15px !important;
+  color: var(--text) !important;
+  outline: none !important;
+  transition: all var(--transition-fast) !important;
+  direction: rtl;
+}
+
+.bau-input-group input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--primary-glow) !important;
+}
+
+.bau-input-group input:focus+.bau-input-icon svg,
+.bau-input-group:focus-within .bau-input-icon svg {
+  color: var(--primary);
+}
+
+/* Login button */
+.bau-login-btn {
+  width: 100%;
+  padding: 14px 24px !important;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-family) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-fast) !important;
+  box-shadow: 0 4px 16px var(--primary-glow);
+  margin-top: 4px;
+  min-height: 50px;
+}
+
+.bau-login-btn svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--transition-fast);
+}
+
+.bau-login-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 24px var(--primary-glow) !important;
+  filter: brightness(1.1);
+}
+
+.bau-login-btn:hover svg {
+  transform: translateX(-4px);
+}
+
+.bau-login-btn:active {
+  transform: translateY(0) !important;
+}
+
+/* Submit button (original form uses input[type=submit]) */
+body.bau-modern input[type="submit"] {
+  width: 100% !important;
+  padding: 14px 24px !important;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-family) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  box-shadow: 0 4px 16px var(--primary-glow);
+  min-height: 50px;
+}
+
+body.bau-modern input[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 24px var(--primary-glow) !important;
+  filter: brightness(1.1);
+}
+
+/* Forgot password link */
+.bau-login-forgot {
+  text-align: center;
+  margin-top: -4px;
+}
+
+.bau-forgot-link {
+  color: var(--text-secondary) !important;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: color var(--transition-fast);
+}
+
+.bau-forgot-link:hover {
+  color: var(--primary) !important;
+}
+
+/* Extra links */
+.bau-login-extra {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bau-login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.bau-login-divider::before,
+.bau-login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.bau-login-divider span {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bau-login-link {
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary) !important;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all var(--transition-fast);
+}
+
+.bau-login-link:hover {
+  border-color: var(--primary);
+  color: var(--primary) !important;
+  background: var(--table-row-hover);
+}
+
+.bau-login-footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.bau-login-footer p {
+  color: var(--text-muted) !important;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* ============================================================
+   20. Theme FAB (floating action button)
+   ============================================================ */
+.bau-theme-fab {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all var(--transition-fast);
+  padding: 0 !important;
+  min-height: unset !important;
+}
+
+.bau-theme-fab:hover {
+  transform: scale(1.1) !important;
+  box-shadow: var(--glass-shadow-hover) !important;
+  filter: none !important;
+}
+
+/* ============================================================
+   21. Font Tag Overrides (old HTML <font> tags)
+   ============================================================ */
+body.bau-modern font {
+  font-family: var(--font-family) !important;
+}
+
+body.bau-modern font[color="#FF0000"],
+body.bau-modern font[color="#ff0000"],
+body.bau-modern font[color="red"] {
+  color: var(--primary) !important;
+}
+
+body.bau-modern font[color="#0000FF"],
+body.bau-modern font[color="#0000ff"],
+body.bau-modern font[color="blue"] {
+  color: var(--value-color) !important;
+}
+
+body.bau-modern font[color="#000080"] {
+  color: var(--text) !important;
+}
+
+body.bau-modern font[color="#000000"],
+body.bau-modern font[color="black"] {
+  color: var(--text) !important;
+}
+
+body.bau-modern font[face] {
+  font-family: var(--font-family) !important;
+}
+
+/* Login page responsive */
+@media (max-width: 540px) {
+  .bau-login-wrapper {
+    padding: 16px;
+  }
+
+  .bau-login-header {
+    padding: 24px 20px;
+  }
+
+  .bau-login-title {
+    font-size: 18px !important;
+  }
+
+  .bau-login-form {
+    padding: 20px 16px;
+  }
+
+  .bau-login-extra {
+    padding: 0 16px 20px;
+  }
+
+  .bau-shape-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .bau-shape-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .bau-shape-3 {
+    width: 200px;
+    height: 200px;
+  }
+}
