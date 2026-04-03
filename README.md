@@ -38,8 +38,9 @@ Since this extension is not yet published on the Chrome Web Store, you can insta
 3. Click on "Load unpacked" and select the folder containing the cloned repository.
 4. Visit the BAU Student Portal and enjoy the new experience!
 
-##  Project Structure
+## 📂 Project Structure
 
+```text
 ├── icons/               # Extension icons (16x16, 48x48, 128x128)
 ├── content.js           # Content script to bridge isolated/main worlds
 ├── manifest.json        # Extension configuration (V3)
@@ -47,6 +48,7 @@ Since this extension is not yet published on the Chrome Web Store, you can insta
 ├── popup.html           # Extension popup interface
 ├── popup.js             # Extension popup logic (Theme syncing)
 └── styles.css           # Global modern stylesheet
+```
 
 ## Author
 Mosa Akram * GitHub: @mosakrm0
