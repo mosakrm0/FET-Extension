@@ -38,7 +38,7 @@ Since this extension is not yet published on the Chrome Web Store, you can insta
 3. Click on "Load unpacked" and select the folder containing the cloned repository.
 4. Visit the BAU Student Portal and enjoy the new experience!
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 ├── icons/               # Extension icons (16x16, 48x48, 128x128)
