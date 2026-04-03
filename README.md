@@ -49,7 +49,3 @@ Since this extension is not yet published on the Chrome Web Store, you can insta
 ├── popup.js             # Extension popup logic (Theme syncing)
 └── styles.css           # Global modern stylesheet
 ```
-
-## Author
-
-**Mosa Akram** * GitHub: [@mosakrm0](https://github.com/mosakrm0)
