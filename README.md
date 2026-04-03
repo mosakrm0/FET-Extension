@@ -51,4 +51,5 @@ Since this extension is not yet published on the Chrome Web Store, you can insta
 ```
 
 ## Author
-Mosa Akram * GitHub: @mosakrm0
+
+**Mosa Akram** * GitHub: [@mosakrm0](https://github.com/mosakrm0)
